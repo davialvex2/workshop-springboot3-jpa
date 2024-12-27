@@ -23,7 +23,10 @@ public class UserService {
 	public User buscarPorId(Long id) {
 		Optional<User> obj = userRepository.findById(id);
 		return obj.get();
-		
+	}
+	
+	public User inserirUser(User obj) {
+		return userRepository.save(obj);
 	}
 
 }
