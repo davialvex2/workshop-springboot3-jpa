@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.daviaugusto.projetospring.entidades.User;
 import com.daviaugusto.projetospring.repositories.UserRepository;
+import com.daviaugusto.projetospring.services.exceptions.ResourceNotFoundException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +24,7 @@ public class UserService {
 	
 	public User buscarPorId(Long id) {
 		Optional<User> obj = userRepository.findById(id);
-		return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	public User inserirUser(User obj) {
