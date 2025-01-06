@@ -10,6 +10,8 @@ import com.daviaugusto.projetospring.repositories.UserRepository;
 import com.daviaugusto.projetospring.services.exceptions.DatabaseException;
 import com.daviaugusto.projetospring.services.exceptions.ResourceNotFoundException;
 
+import jakarta.persistence.EntityNotFoundException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -47,9 +49,14 @@ public class UserService {
 	}
 	
 	public User update(Long id, User user) {
+		try {
 		User entity = userRepository.getReferenceById(id);
 		updateData(entity, user);
 		return userRepository.save(entity);
+		}
+		catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
 	}
 
 	private void updateData(User entity, User user) {
