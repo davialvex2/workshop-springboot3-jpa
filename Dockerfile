@@ -1,4 +1,4 @@
-FROM ubunto:latest AS build
+FROM ubuntu:latest AS build
 
 RUN apt-get updade
 RUN pat-get install openjdk-17-jdk -y
