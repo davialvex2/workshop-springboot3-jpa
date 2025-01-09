@@ -1,6 +1,6 @@
 FROM ubuntu:latest AS build
 
-RUN apt-get updade
+RUN apt-get update
 RUN pat-get install openjdk-17-jdk -y
 COPY . .
 
